@@ -27,7 +27,7 @@ class BugService {
     }
 
     async delete(id, userEmail) {
-        let data = await dbContext.Bugs.findOneAndRemove({ _id: id, creatorEmail: userEmail })
+        let data = await dbContext.Bugs.findOneAndUpdate({ _id: id, creatorEmail: userEmail }, { closed: true }, { new: true })
         if (!data) {
             throw new BadRequest("Youre in the wrong neck of the woods!")
         }
