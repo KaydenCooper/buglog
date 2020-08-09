@@ -36,6 +36,9 @@ import BugModal from "../components/BugModal";
 import Bug from "../components/Bug";
 export default {
   name: "home",
+  mounted() {
+    this.$store.dispatch("getBugs");
+  },
   computed: {
     bugs() {
       return this.$store.state.bugs;
@@ -43,9 +46,6 @@ export default {
     profile() {
       return this.$store.state.profile;
     },
-  },
-  mounted() {
-    this.$store.dispatch("getBugs");
   },
   methods: {},
 

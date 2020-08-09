@@ -51,7 +51,6 @@ export default {
   },
   methods: {
     addBug() {
-      debugger;
       this.newBug.creatorEmail = this.profile.email;
       this.$store.dispatch("addBug", this.newBug);
       this.newBug = {};

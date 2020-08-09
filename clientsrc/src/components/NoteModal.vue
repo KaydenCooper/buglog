@@ -54,7 +54,7 @@ export default {
         bug: id,
       });
       this.newNote = {};
-      $("#bug-modal").modal("hide");
+      $("#note-modal").modal("hide");
     },
   },
   components: {},
