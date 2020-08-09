@@ -56,7 +56,6 @@
         : {{note.content}}
       </div>
     </div>
-    <footer class="col-12 bg-primary text-center text-white py-3">Created By: Kayden Cooper</footer>
   </div>
 </template>
 
@@ -93,10 +92,10 @@ export default {
         dangerMode: true,
       }).then((willDelete) => {
         if (willDelete) {
-          this.$store.dispatch("deleteBug", id);
           swal("Successfully Deleted!", {
             icon: "success",
           });
+          this.$store.dispatch("deleteBug", id);
         } else {
           swal("Phew Close One!");
         }

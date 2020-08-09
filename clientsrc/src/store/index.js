@@ -53,9 +53,9 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    async getBug({ commit, dispatch }, bugId) {
+    async getBug({ commit, dispatch }, bug) {
       try {
-        let res = await api.get("bugs/" + bugId)
+        let res = await api.get("bugs/" + bug)
         commit("setActiveBug", res.data)
       } catch (error) {
         console.error(error);
@@ -64,8 +64,8 @@ export default new Vuex.Store({
     async addBug({ commit, dispatch }, bugData) {
       try {
         let res = await api.post("bugs", bugData)
-
         dispatch("getBugs")
+        router.push({ name: "bugDetails", params: { id: res.data.id } })
         console.log(res.data);
       } catch (error) {
         console.error(error);
@@ -74,7 +74,8 @@ export default new Vuex.Store({
     async deleteBug({ commit, dispatch }, bugId) {
       try {
         let res = await api.delete("bugs/" + bugId)
-        dispatch("getBugs")
+        commit("setActiveBug", bugId)
+        dispatch("getBugs", bugId)
       } catch (error) {
         console.error(error)
       }

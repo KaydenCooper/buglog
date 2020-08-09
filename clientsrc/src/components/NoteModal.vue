@@ -21,11 +21,7 @@
           </div>
           <div class="modal-footer bg-light">
             <button type="button" class="btn btn-outline-danger rounded" data-dismiss="modal">Close</button>
-            <button
-              type="button"
-              class="btn btn-outline-success rounded"
-              @click="addNote(bug.id)"
-            >Submit</button>
+            <button type="button" class="btn btn-outline-success rounded" @click="addNote">Submit</button>
           </div>
         </div>
       </div>
@@ -48,10 +44,10 @@ export default {
     },
   },
   methods: {
-    addNote(id) {
+    addNote() {
       this.$store.dispatch("addNote", {
         content: this.newNote.content,
-        bug: id,
+        bug: this.bug.id,
       });
       this.newNote = {};
       $("#note-modal").modal("hide");

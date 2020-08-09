@@ -15,6 +15,7 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+    beforeEnter: authGuard,
   },
   {
     path: "/profile",
@@ -26,6 +27,7 @@ const routes = [
     path: "/bugs/:id",
     name: "bugDetails",
     component: BugDetails,
+    beforeEnter: authGuard,
 
   }
 ];

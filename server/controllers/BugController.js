@@ -22,7 +22,7 @@ export class BugController extends BaseController {
     }
     async getNote(req, res, next) {
         try {
-            let data = await noteService.find({ creatorEmail: req.userInfo.email })
+            let data = await noteService.getAll(req.params.id)
             return res.send(data)
         } catch (error) {
             next(error)

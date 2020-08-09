@@ -2,6 +2,9 @@ import { dbContext } from "../db/DbContext"
 import { BadRequest } from "../utils/Errors"
 
 class NoteService {
+    async getAll(id) {
+        return await dbContext.Notes.find({ bug: id })
+    }
 
     async find(query = {}) {
         let notes = await dbContext.Notes.find(query).populate("creator", "name picture")

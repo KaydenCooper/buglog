@@ -7,6 +7,7 @@ export default {
 
         async addNote({ commit, dispatch }, noteData) {
             try {
+
                 let res = await api.post("notes", noteData)
                 dispatch("getNote", noteData.bug)
             } catch (error) {
@@ -15,7 +16,8 @@ export default {
         },
         async getNote({ commit }, id) {
             try {
-                let res = await api.get("bugs/" + id + "/notes")
+
+                let res = await api.get("bugs/" + id + "/notes/")
                 commit("setActiveNote", res.data)
             } catch (error) {
                 console.error(error);
