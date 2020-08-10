@@ -11,7 +11,7 @@
         <span v-else class="text-danger strikethrough">Closed</span>
       </h3>
       <p class="mb-1">Created By:</p>
-      <h5>{{profile.name}}</h5>
+      <h5>{{bug.creatorEmail}}</h5>
     </div>
     <div class="col-6 card p-2 border-primary text-center pt-3 shadow-lg px-0">
       <i
@@ -110,7 +110,10 @@ export default {
         dangerMode: true,
       }).then((willDelete) => {
         if (willDelete) {
-          this.$store.dispatch("deleteNote", id);
+          this.$store.dispatch("deleteNote", {
+            id: id,
+            bug: this.$route.params.id,
+          });
           swal("Successfully Deleted!", {
             icon: "success",
           });

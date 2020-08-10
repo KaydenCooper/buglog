@@ -23,11 +23,11 @@ export default {
                 console.error(error);
             }
         },
-        async deleteNote({ dispatch }, id) {
+        async deleteNote({ dispatch }, data) {
             try {
 
-                let res = await api.delete("notes/" + id)
-                dispatch("getNote"
+                let res = await api.delete("notes/" + data.id)
+                dispatch("getNote", data.bug
                 )
             } catch (error) {
                 console.error(error);
