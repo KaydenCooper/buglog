@@ -64,7 +64,7 @@ export class BugController extends BaseController {
     async getAll(req, res, next) {
         try {
 
-            let data = await bugService.find({ creatorEmail: req.userInfo.email })
+            let data = await bugService.find()
             return res.send(data)
         } catch (error) {
             next(error)
