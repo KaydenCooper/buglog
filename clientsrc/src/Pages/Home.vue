@@ -12,13 +12,13 @@
       </div>
       <div class="col-8 text-center">
         <h1>
-          <u>Current Bugs</u>
+          <u class="text-primary">Current Bugs</u>
         </h1>
         <div class="card d-flex flex-row justify-content-around shadow-lg p-2">
-          <span>TITLE</span>
-          <span>REPORTED BY</span>
-          <span>STATUS</span>
-          <span>DATE MODIFIED</span>
+          <button class="btn">TITLE</button>
+          <button class="btn">REPORTED BY</button>
+          <button class="btn" @click="open = !open">STATUS</button>
+          <button class="btn">DATE MODIFIED</button>
         </div>
         <div class="card shadow-lg overflow">
           <bug v-for="bug in bugs" :bugData="bug" :key="bug.id" />
@@ -36,12 +36,28 @@ import BugModal from "../components/BugModal";
 import Bug from "../components/Bug";
 export default {
   name: "home",
+  data() {
+    return {
+      open: true,
+    };
+  },
   mounted() {
     this.$store.dispatch("getBugs");
   },
   computed: {
     bugs() {
-      return this.$store.state.bugs;
+      let bugs = [...this.$store.state.bugs];
+
+      bugs.sort((a, b) => {
+        if (a.closed === b.closed) {
+          return 0;
+        } else if (a.closed === this.open) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
+      return bugs;
     },
     profile() {
       return this.$store.state.profile;
