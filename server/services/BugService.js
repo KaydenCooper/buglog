@@ -7,8 +7,8 @@ class BugService {
         let bugs = await dbContext.Bugs.find(query).populate("creator", "name picture")
         return bugs
     }
-    async getById(id, userEmail) {
-        let data = await dbContext.Bugs.findOne({ _id: id, creatorEmail: userEmail })
+    async getById(id) {
+        let data = await dbContext.Bugs.findOne({ _id: id })
         if (!data) {
             throw new BadRequest("Youre in the wrong neck of the woods!")
         }
